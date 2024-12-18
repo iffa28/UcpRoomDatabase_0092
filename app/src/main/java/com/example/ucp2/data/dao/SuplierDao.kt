@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface SuplierDao {
     @Insert
-    suspend fun inserSuplier(suplier: Suplier)
+    suspend fun insertSuplier(suplier: Suplier)
 
     @Query("SELECT * FROM suplier ORDER BY namaSuplier ASC")
     fun getAllSuplier(): Flow<List<Suplier>>

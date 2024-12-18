@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface BarangDao {
     @Insert
-    suspend fun inserBarang(barang: Barang)
+    suspend fun insertBarang(barang: Barang)
 
     @Query("SELECT * FROM barang ORDER BY nama ASC")
     fun getAllBarang(): Flow<List<Barang>>
