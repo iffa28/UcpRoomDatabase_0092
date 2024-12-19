@@ -11,3 +11,13 @@ interface InterfaceContainerApp{
     val repositoryBrg: RepositoryBrg
     val repositorySplr: RepositorySplr
 }
+
+class ContainerApp(private val context: Context) : InterfaceContainerApp {
+    override val repositoryBrg: RepositoryBrg by lazy {
+        LocalRepositoryBrg(TokoDatabase.getDatabase(context).barangDao())
+    }
+
+    override val repositorySplr: RepositorySplr by lazy {
+        LocalRepositorySplr(TokoDatabase.getDatabase(context).suplierDao())
+    }
+}
