@@ -27,6 +27,19 @@ fun PengelolaHalaman(
                 modifier = modifier
             )
         }
+        composable(
+            route = DestinasiInsertSplr.route
+        ) {
+            InsertSuplierView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                },
+                modifier = modifier,
+            )
+        }
 
     }
 
