@@ -24,6 +24,9 @@ fun PengelolaHalaman(
             route = DestinasiHome.route
         ) {
             HomeView(
+                onTambahSplrClick = {
+                    navController.navigate(DestinasiInsertSplr.route)
+                },
                 modifier = modifier
             )
         }
