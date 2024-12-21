@@ -2,17 +2,89 @@ package com.example.ucp2.ui.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.ui.customwidget.TopAppBar
 import com.example.ucp2.ui.viewmodel.FormSplrErrorState
+import com.example.ucp2.ui.viewmodel.InsertSuplierViewModel
 import com.example.ucp2.ui.viewmodel.SplrUIState
 import com.example.ucp2.ui.viewmodel.SuplierEvent
+import com.example.ucp2.ui.viewmodell.PenyediaViewModel
+import kotlinx.coroutines.launch
+
+@Composable
+fun InsertSuplierView(
+    onBack: () -> Unit,
+    onNavigate: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: InsertSuplierViewModel = viewModel(factory = PenyediaViewModel.Factory)
+) {
+    val uiState = viewModel.uiState  //Ambil UI state dari ViewModel
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
+
+    // Observasi perubahan snackbarMessage
+    LaunchedEffect(uiState.snackBarMessage) {
+        uiState.snackBarMessage?.let { message ->
+            coroutineScope.launch {
+                //tampilkan snackbar
+                snackbarHostState.showSnackbar(message)
+                viewModel.resetSnackBarMessage()
+            }
+        }
+    }
+
+    Scaffold(
+        modifier = modifier,
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(16.dp)
+        ) {
+
+            TopAppBar(
+                onBack = onBack,
+                showBackButton = true,
+                judul = "Tambah Suplier"
+            )
+
+            //isi body
+            InsertBodySplr(
+                uiState = uiState,
+                onValueChange = { updatedEvent ->
+                    //update state di viewmodel
+                    viewModel.updateState(updatedEvent)
+                },
+                onClick = {
+                    viewModel.saveData()
+                    if (uiState.snackBarMessage == "Data berhasil disimpan") {
+                        onNavigate()
+                    }
+                }
+            )
+
+        }
+    }
+}
 
 @Composable
 fun InsertBodySplr(
@@ -32,7 +104,6 @@ fun InsertBodySplr(
             errorState = uiState.isEntryValid,
             modifier = Modifier.fillMaxWidth()
         )
-
         Button(
             onClick = onClick,
             modifier = Modifier.fillMaxWidth(),
