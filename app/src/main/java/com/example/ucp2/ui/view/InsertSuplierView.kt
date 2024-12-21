@@ -1,14 +1,48 @@
 package com.example.ucp2.ui.view
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.ucp2.ui.viewmodel.FormSplrErrorState
+import com.example.ucp2.ui.viewmodel.SplrUIState
 import com.example.ucp2.ui.viewmodel.SuplierEvent
+
+@Composable
+fun InsertBodySplr(
+    modifier: Modifier = Modifier,
+    onValueChange: (SuplierEvent) -> Unit,
+    uiState: SplrUIState,
+    onClick: () -> Unit
+){
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        FormSuplier(
+            suplierEvent = uiState.suplierEvent,
+            onValueChange = onValueChange,
+            errorState = uiState.isEntryValid,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Button(
+            onClick = onClick,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text("Simpan")
+        }
+
+    }
+
+}
 
 @Composable
 fun FormSuplier(
