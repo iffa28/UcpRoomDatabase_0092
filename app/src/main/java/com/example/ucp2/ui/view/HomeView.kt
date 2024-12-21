@@ -162,7 +162,7 @@ fun BodyHomeView(
                         horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.kotak),
+                            painter = painterResource(id = R.drawable.addsplr),
                             contentDescription = "", Modifier
                                 .size(80.dp)
                                 .padding(5.dp)
