@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,6 +22,33 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.example.ucp2.R
+import com.example.ucp2.ui.customwidget.TopAppBarHome
+
+@Composable
+fun HomeView(
+    onTambahSplrClick: () -> Unit = {},
+    onListSplrClick: () -> Unit = {},
+    onTambahBrgClick: () -> Unit = {},
+    onListBrgClick: () -> Unit = {},
+    modifier: Modifier = Modifier
+) {
+    Scaffold(
+        modifier = modifier,
+        topBar = {
+            TopAppBarHome()
+        }
+
+    ) { innerPadding ->
+        BodyHomeView(
+            onAddSuplierClick = {onTambahSplrClick()},
+            onAddProductClick = {onTambahBrgClick()},
+            onProductListClick = {onListBrgClick},
+            onSuplierListClick = {onListSplrClick},
+            modifier = modifier.padding(innerPadding)
+        )
+
+    }
+}
 
 @Composable
 fun BodyHomeView(
