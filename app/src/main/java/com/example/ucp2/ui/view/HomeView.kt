@@ -27,9 +27,9 @@ import com.example.ucp2.ui.customwidget.TopAppBarHome
 @Composable
 fun HomeView(
     onTambahSplrClick: () -> Unit = {},
-    onListSplrClick: () -> Unit = {},
+    onDaftarSuplierClick: () -> Unit = {},
     onTambahBrgClick: () -> Unit = {},
-    onListBrgClick: () -> Unit = {},
+    onDaftarBrgClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -42,8 +42,8 @@ fun HomeView(
         BodyHomeView(
             onAddSuplierClick = {onTambahSplrClick()},
             onAddProductClick = {onTambahBrgClick()},
-            onProductListClick = {onListBrgClick},
-            onSuplierListClick = {onListSplrClick},
+            onSuplierListClick = {onDaftarSuplierClick()},
+            onProductListClick = {onDaftarBrgClick()},
             modifier = modifier.padding(innerPadding)
         )
 
