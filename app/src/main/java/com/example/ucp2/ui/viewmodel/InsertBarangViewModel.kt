@@ -10,6 +10,22 @@ import com.example.ucp2.repository.RepositoryBrg
 import kotlinx.coroutines.launch
 
 
+
+data class BrgUIState(
+    val barangEvent: BarangEvent = BarangEvent(),
+    val isEntryValid: FormErrorState = FormErrorState(),
+    val snackBarMessage: String? = null
+)
+
+data class BarangEvent(
+    val id: Int = 0,
+    val nama: String = "",
+    val deskripsi: String = "",
+    val harga: String = "",
+    val stok: String = "",
+    val namaSuplier: String = "",
+)
+
 //Menyimpan input form ke dalam entity
 fun BarangEvent.toBarangEntity(): Barang = Barang(
     id= id,
