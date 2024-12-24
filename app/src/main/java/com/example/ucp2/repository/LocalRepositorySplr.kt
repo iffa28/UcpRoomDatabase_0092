@@ -15,7 +15,7 @@ class LocalRepositorySplr(
         return suplierDao.getAllSuplier()
     }
 
-    override fun getSplr(id: String): Flow<Suplier> {
+    override fun getSplr(id: Int): Flow<Suplier> {
         return suplierDao.getSuplier(id)
     }
 
