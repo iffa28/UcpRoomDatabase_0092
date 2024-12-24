@@ -25,7 +25,7 @@ import com.example.ucp2.ui.viewmodel.FormSplrErrorState
 import com.example.ucp2.ui.viewmodel.InsertSuplierViewModel
 import com.example.ucp2.ui.viewmodel.SplrUIState
 import com.example.ucp2.ui.viewmodel.SuplierEvent
-import com.example.ucp2.ui.viewmodell.PenyediaViewModel
+import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 @Composable
@@ -52,6 +52,14 @@ fun InsertSuplierView(
 
     Scaffold(
         modifier = modifier,
+        topBar = {
+            TopAppBar(
+                onBack = onBack,
+                showBackButton = true,
+                judul = "TAMBAH SUPLIER",
+                modifier = modifier
+            )
+        },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
     ) { padding ->
         Column(
@@ -61,11 +69,7 @@ fun InsertSuplierView(
                 .padding(16.dp)
         ) {
 
-            TopAppBar(
-                onBack = onBack,
-                showBackButton = true,
-                judul = "Tambah Suplier"
-            )
+
 
             //isi body
             InsertBodySplr(
@@ -127,16 +131,16 @@ fun FormSuplier(
     ) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = suplierEvent.namaSuplier,
+            value = suplierEvent.namaSplr,
             onValueChange = {
-                onValueChange(suplierEvent.copy(namaSuplier = it))
+                onValueChange(suplierEvent.copy(namaSplr = it))
             },
             label = { Text("Nama Suplier") },
-            isError = errorState.namaSuplier != null,
+            isError = errorState.namaSplr != null,
             placeholder = { Text("Masukkan nama suplier") }
         )
         Text(
-            text = errorState.namaSuplier ?: "",  //pesan error
+            text = errorState.namaSplr ?: "",  //pesan error
             color = Color.Red
         )
 
