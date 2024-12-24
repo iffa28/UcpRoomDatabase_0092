@@ -8,22 +8,24 @@ object DestinasiHome : AlamatNavigasi {
     override val route = "home"
 }
 
+object DestinasiListBrg : AlamatNavigasi {
+    override val route: String = "list_Brg"
+}
+
+object DestinasiListSplr : AlamatNavigasi {
+    override val route: String = "list_Splr"
+}
+
 object DestinasiInsertBrg : AlamatNavigasi {
     override val route: String = "insert_Brg"
 }
 
-object DestinasiInserSplr : AlamatNavigasi {
-    override val route: String = "insert_Brg"
+object DestinasiInsertSplr : AlamatNavigasi {
+    override val route: String = "insert_Splr"
 }
 
 object DestinasiDetailBrg : AlamatNavigasi {
     override val route = "detail_brg"
-    const val ID = "id"
-    val routesWithArg = "$route/{$ID}"
-}
-
-object DestinasiDetailSplr : AlamatNavigasi {
-    override val route = "detail_splr"
     const val ID = "id"
     val routesWithArg = "$route/{$ID}"
 }
@@ -34,11 +36,6 @@ object DestinasiUpdateBrg : AlamatNavigasi {
     val routesWithArg = "$route/{$ID}"
 }
 
-object DestinasiUpdateSplr : AlamatNavigasi {
-    override val route = "update"
-    const val ID = "id"
-    val routesWithArg = "$route/{$ID}"
-}
 
 
 
