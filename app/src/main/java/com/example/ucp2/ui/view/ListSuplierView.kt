@@ -19,10 +19,13 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -31,11 +34,40 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.R
 import com.example.ucp2.data.entity.Suplier
+import com.example.ucp2.ui.customwidget.TopAppBar
+import com.example.ucp2.ui.viewmodel.ListSplrViewModel
 import com.example.ucp2.ui.viewmodel.ListSuplierUiState
+import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
 
+@Composable
+fun ListSuplierView(
+    onBack: () -> Unit,
+    viewModel: ListSplrViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    modifier: Modifier = Modifier
+) {
+    Scaffold(
+        modifier = modifier,
+        topBar = {
+            TopAppBar(
+                onBack = onBack,
+                showBackButton = true,
+                judul = "DAFTAR SUPLIER",
+                modifier = modifier
+            )
+        },
+    ) { innerPadding ->
+        val listSuplierUiState by viewModel.listSuplierUiState.collectAsState()
+        BodyListSplrView(
+            listSuplierUiState = listSuplierUiState,
+            modifier = Modifier.padding(innerPadding)
+        )
+
+    }
+}
 
 @Composable
 fun BodyListSplrView(
