@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Home
@@ -26,6 +28,25 @@ import com.example.ucp2.R
 import com.example.ucp2.data.entity.Suplier
 
 
+@Composable
+fun ListSuplier(
+    listSplr: List<Suplier>,
+    modifier: Modifier = Modifier,
+) {
+    //agar kolomnya bisa di scroll
+    LazyColumn(
+        modifier = modifier
+    ) {
+        items(
+            items = listSplr,
+            itemContent = { splr ->
+                CardSplr(
+                    splr = splr,
+                )
+            }
+        )
+    }
+}
 
 
 @OptIn(ExperimentalMaterial3Api::class)
