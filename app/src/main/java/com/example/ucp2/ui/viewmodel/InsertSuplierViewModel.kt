@@ -23,7 +23,7 @@ class InsertSuplierViewModel(private val repositorySplr: RepositorySplr) : ViewM
     private fun validateFields(): Boolean {
         val event = uiState.suplierEvent
         val errorState = FormSplrErrorState(
-            namaSuplier = if (event.namaSuplier.isNotEmpty()) null else "Nama tidak boleh kosong",
+            namaSplr = if (event.namaSplr.isNotEmpty()) null else "Nama Supliertidak boleh kosong",
             kontak = if (event.kontak.isNotEmpty()) null else "Kontak tidak boleh kosong",
             alamat = if (event.alamat.isNotEmpty()) null else "Alamat tidak boleh kosong"
         )
@@ -71,23 +71,23 @@ data class SplrUIState(
 )
 
 data class FormSplrErrorState(
-    val namaSuplier: String? = null,
+    val namaSplr: String? = null,
     val kontak: String? = null,
     val alamat: String? = null,
 ){
     fun isValid(): Boolean {
-        return namaSuplier == null && kontak == null && alamat == null
+        return namaSplr == null && kontak == null && alamat == null
     }
 }
 
 fun SuplierEvent.toSuplierEntity(): Suplier = Suplier(
-    namaSuplier = namaSuplier,
+    namaSplr = namaSplr,
     kontak = kontak,
     alamat = alamat
 )
 
 data class SuplierEvent(
-    val namaSuplier: String = "",
+    val namaSplr: String = "",
     val kontak: String = "",
     val alamat: String = "",
 )
